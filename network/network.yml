@@ -93,7 +93,7 @@ Resources:
         - Key: Name
           Value: !Sub ${TemplateName} PrivateSubnet 2
 
-  # Gateways for access to outside the VPC
+  # Gateways for access outside of the VPC
   InternetGateway:
     Type: AWS::EC2::InternetGateway
     Properties:
@@ -124,3 +124,23 @@ Resources:
       Tags:
         - Key: Name
           Value: !Sub ${TemplateName} ElasticIP for pub2
+
+  NATGateway1:
+    Type: AWS::EC2::NatGateway
+    DependsOn: ElasticIP1
+    Properties:
+      AllocationId: !GetAtt ElasticIP1.AllocationId
+      SubnetId: !Ref PublicSubnet1
+      Tags:
+        - Key: Name
+          Value: !Sub ${TemplateName} NatGateway1
+
+  NATGateway2:
+    Type: AWS::EC2::NatGateway
+    DependsOn: ElasticIP2
+    Properties:
+      AllocationId: !GetAtt ElasticIP2.AllocationId
+      SubnetId: !Ref PublicSubnet2
+      Tags:
+        - Key: Name
+          Value: !Sub ${TemplateName} NatGateway2
