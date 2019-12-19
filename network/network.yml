@@ -93,6 +93,7 @@ Resources:
         - Key: Name
           Value: !Sub ${StackName} PrivateSubnet 2
 
+  # Gateways for access to outside the VPC
   InternetGateway:
     Type: AWS::EC2::InternetGateway
     Properties:
@@ -105,3 +106,21 @@ Resources:
     Properties:
       InternetGatewayId: !Ref InternetGateway
       VpcId: !Ref VPC
+
+  ElasticIP1:
+    Type: AWS::EC2::EIP
+    DependsOn: InternetGatewayAttachment
+    Properties:
+      Domain: vpc
+      Tags:
+        - Key: Name
+          Value: !Sub ${StackName} ElasticIP for pub1
+
+  ElasticIP2:
+    Type: AWS::EC2::EIP
+    DependsOn: InternetGatewayAttachment
+    Properties:
+      Domain: vpc
+      Tags:
+        - Key: Name
+          Value: !Sub ${StackName} ElasticIP for pub2
