@@ -32,6 +32,6 @@ Resources:
       SecurityGroupEgress:
         - CidrIp: 0.0.0.0/0
           FromPort: 0
-          ToPort: 66535
+          ToPort: 65535
           IpProtocol: tcp
           Description: access internet without restriction to be able to download and update its software
