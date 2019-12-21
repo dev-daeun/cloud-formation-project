@@ -8,6 +8,22 @@ Parameters:
     Description: A stack's name to distinguish resources created by CloudFormation.
     Type: String
 
+  MinAutoScale:
+    Description: Minimum amount of EC2 instances to auto-scale
+    Type: String
+
+  MaxAutoScale:
+    Description: Maximum amount of EC2 instances to auto-scale
+    Type: String
+
+  InstanceTypeAutoScale:
+    Description: Type of AMI
+    Type: String
+
+  EbsVolumeSize:
+    Description: Size of EBS disk
+    Type: String
+
 
 Resources:
   ProfileWithRolesForOurApp:
@@ -23,8 +39,8 @@ Resources:
       BlockDeviceMappings:
         - DeviceName: /dev/sda1
           Ebs:
-            VolumeSize: 16
-      InstanceType: t2.medium
+            VolumeSize: !Ref EbsVolumeSize
+      InstanceType: !Ref InstanceTypeAutoScale
       IamInstanceProfile: !Ref ProfileWithRolesForOurApp
       UserData:
         Fn::Base64: !Sub |
@@ -50,5 +66,5 @@ Resources:
             !Sub ${TemplateName}-PRI1-SN
         - Fn::ImportValue:
             !Sub ${TemplateName}-PRI2-SN
-      MinSize: 4
-      MaxSize: 8
+      MinSize: !Ref MinAutoScale
+      MaxSize: !Ref MaxAutoScale
