@@ -59,3 +59,11 @@ Resources:
 
       ListenerArn: !Ref LBListener
       Priority: 1
+
+
+Outputs:
+  LBforUdagram:
+    Description: Load Balancer for Udagram
+    Value: !GetAtt LBforUdagram.DNSName
+    Export:
+      Name: !Sub ${TemplateName}-LB
