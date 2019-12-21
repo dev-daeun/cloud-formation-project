@@ -3,6 +3,12 @@ Description:
   This template deploys auto-scaling group for instances in private subnets.
 
 
+Parameters:
+  TemplateName:
+    Description: A stack's name to distinguish resources created by CloudFormation.
+    Type: String
+
+
 Resources:
   ProfileWithRolesForOurApp:
     Type: AWS::IAM::InstanceProfile
@@ -34,3 +40,16 @@ Resources:
       SecurityGroups:
         - Fn::ImportValue:
             !Sub ${TemplateName}-SECURITY-GROUP
+
+  AutoScalingGroup:
+    Type: AWS::AutoScaling::AutoScalingGroup
+    Properties:
+      AutoScalingGroupName: !Sub ${TemplateName} auto-scaling group
+      LaunchConfigurationName: !Ref LaunchConfig
+      VpcZoneIdentifier:
+        - Fn::ImportValue:
+            !Sub ${TemplateName}-PRI1-SN
+        - Fn::ImportValue:
+            !Sub ${TemplateName}-PRI2-SN
+      MinSize: 4
+      MaxSize: 8
