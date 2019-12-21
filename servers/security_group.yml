@@ -1,6 +1,6 @@
 Description:
   Written by DaEun Kim.
-  This template deploys auto-scaling group for instances in private subnets.
+  This template deploys security group for each instance in subnets.
 
 
 Parameters:
