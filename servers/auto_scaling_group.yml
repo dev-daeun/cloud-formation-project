@@ -1,0 +1,34 @@
+Description:
+  Written by DaEun Kim.
+  This template deploys auto-scaling group for instances in private subnets.
+
+
+Resources:
+  ProfileWithRolesForOurApp:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Roles:
+        - UdacityS3ReadOnlyEC2
+
+          #!/bin/bash
+          apt-get update -y
+          apt-get install unzip awscli -y
+          apt-get install apache2 -y
+          systemctl start apache2.service
+          cd /var/www/html
+          aws s3 cp s3://udacity-demo-1/udacity.zip .
+          unzip -o udacity.zip
+
+  LaunchConfig:
+    Type: AWS::AutoScaling::LaunchConfiguration
+    Properties:
+      AssociatePublicIpAddress: false
+      BlockDeviceMappings:
+        - DeviceName: /dev/sda1
+          Ebs:
+            VolumeSize: 16
+      InstanceId: ami-06d51e91cea0dac8d
+      InstanceType: t2.medium
+      IamInstanceProfile: !Ref ProfileWithRolesForOurApp
+
+
