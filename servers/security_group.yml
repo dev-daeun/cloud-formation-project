@@ -1,0 +1,37 @@
+Description:
+  Written by DaEun Kim.
+  This template deploys auto-scaling group for instances in private subnets.
+
+
+Parameters:
+  TemplateName:
+    Description: A stack's name to distinguish resources created by CloudFormation.
+    Type: String
+
+  VpcCIDR:
+    Description: IP range (CIDR notation) for VPC
+    Type: String
+    Default: 10.0.0.0/16
+
+
+Resources:
+  SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: security group for instances in !Sub ${TemplateName}-VPCID
+      GroupName: !Sub ${TemplateName}-security-group
+      VpcId:
+        Fn::ImportValue:
+          !Sub ${TemplateName}-VPCID
+      SecurityGroupIngress:
+        - CidrIp: !Ref VpcCIDR
+          FromPort: 80
+          ToPort: 80
+          IpProtocol: tcp
+          Description: receive traffic from load balancer in the same VPC
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          FromPort: 0
+          ToPort: 66535
+          IpProtocol: tcp
+          Description: access internet without restriction to be able to download and update its software
