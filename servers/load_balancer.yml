@@ -64,6 +64,7 @@ Resources:
 Outputs:
   LBforUdagram:
     Description: Load Balancer for Udagram
-    Value: !GetAtt LBforUdagram.DNSName
+    Value:
+      Fn::Join: [ "", [ "http://", !GetAtt "LBforUdagram.DNSName" ] ]
     Export:
       Name: !Sub ${TemplateName}-LB
