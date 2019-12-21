@@ -62,7 +62,7 @@ Resources:
     Properties:
       AutoScalingGroupName: !Sub ${TemplateName} auto-scaling group
       LaunchConfigurationName: !Ref LaunchConfig
-      VpcZoneIdentifier:
+      VPCZoneIdentifier:
         - Fn::ImportValue:
             !Sub ${TemplateName}-PRI1-SN
         - Fn::ImportValue:
