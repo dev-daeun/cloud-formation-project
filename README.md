@@ -2,7 +2,7 @@
 
 This is an assignment project for [Udacity Cloud Devops Nanodegree](https://www.udacity.com/course/cloud-dev-ops-nanodegree--nd9991).
 CloudFormation templates in this repo deploys AWS resources shown in the chart below.
-( S3 bucket is already offered in assignment.)
+( S3 bucket is already offered in project requirements.)
 <br><br>
 ![](./udagram_architecture.png)
 
