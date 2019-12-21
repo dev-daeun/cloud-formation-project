@@ -31,5 +31,6 @@ Resources:
           cd /var/www/html
           aws s3 cp s3://udacity-demo-1/udacity.zip .
           unzip -o udacity.zip
-
-
+      SecurityGroups:
+        - Fn::ImportValue:
+            !Sub ${TemplateName}-SECURITY-GROUP

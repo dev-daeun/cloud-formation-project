@@ -35,3 +35,11 @@ Resources:
           ToPort: 65535
           IpProtocol: tcp
           Description: access internet without restriction to be able to download and update its software
+
+
+Outputs:
+  SecurityGroup:
+    Description: Security group for instances
+    Value: !Ref SecurityGroup
+    Export:
+      Name: !Sub ${TemplateName}-SECURITY-GROUP
