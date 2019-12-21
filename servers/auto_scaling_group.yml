@@ -40,6 +40,7 @@ Resources:
         - DeviceName: /dev/sda1
           Ebs:
             VolumeSize: !Ref EbsVolumeSize
+      ImageId: ami-06d51e91cea0dac8d
       InstanceType: !Ref InstanceTypeAutoScale
       IamInstanceProfile: !Ref ProfileWithRolesForOurApp
       UserData:
