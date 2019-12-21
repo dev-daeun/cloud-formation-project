@@ -24,7 +24,6 @@ Resources:
         - DeviceName: /dev/sda1
           Ebs:
             VolumeSize: 16
-      InstanceId: ami-06d51e91cea0dac8d
       InstanceType: t2.medium
       IamInstanceProfile: !Ref ProfileWithRolesForOurApp
       UserData:
