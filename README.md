@@ -10,20 +10,22 @@ CloudFormation templates in this repo deploys AWS resources shown in the chart b
 To deploy the resources, run the commands below in order.
 ```
 # Deploys basic nework resources such as VPC, subnets, NAT/Interget gateway and router etc.
-$ ./create_stack.sh Udagram-network network/network.yml network/network_parameter.json
+$ sh create_stack.sh Udagram-network network/network.yml network/parameter.json
 ```
 
 ```
 # Deploys security group for each instance in subnets.
-$ ./create_stack.sh Udagram-security-group servers/security_group.yml servers/security_parameter.json
+$ sh create_stack.sh Udagram-SG servers/security_group.yml servers/parameter.json
+```
+
+```
+# Deploys Load Balancer which sends user-end traffic to target instances.
+$ sh create_stack.sh Udagram-LB servers/load_balancer.yml servers/parameter.json
 ```
 
 ```
 # Deploys Lanunch Configuration & Auto-Scaling group applied to instances in private subnets.
-$ ./create_stack.sh Udagram-auto-scale servers/auto_scaling_group.yml servers/auto_scaling_parameter.json
+$ sh create_stack.sh Udagram-AS servers/auto_scaling_group.yml servers/parameter.json
 ```
 
-```
-# Deploys Load Balancer which sends user-end traffic to public subnets.
-$ ./create_stack.sh Udagram-LB servers/load_balancer.yml servers/load_balancer_parameter.json
-```
+
