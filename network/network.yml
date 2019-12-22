@@ -224,24 +224,6 @@ Outputs:
     Export:
       Name: !Sub ${TemplateName}-VPCID
 
-  VPCPublicRouteTable:
-    Description: Public Routing
-    Value: !Ref PublicRouteTable
-    Export:
-      Name: !Sub ${TemplateName}-PUB-RT
-
-  VPCPrivateRouteTable1:
-    Description: Private Routing AZ1
-    Value: !Ref PrivateRouteTable1
-    Export:
-      Name: !Sub ${TemplateName}-PRI1-RT
-
-  VPCPrivateRouteTable2:
-    Description: Private Routing AZ2
-    Value: !Ref PrivateRouteTable2
-    Export:
-      Name: !Sub ${TemplateName}-PRI2-RT
-
   PublicSubnet1:
     Description: A reference to the public subnet in the 1st Availability Zone
     Value: !Ref PublicSubnet1
