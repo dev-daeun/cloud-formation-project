@@ -16,6 +16,8 @@ Resources:
       Subnets:
         - Fn::ImportValue: !Sub ${TemplateName}-PUB1-SN
         - Fn::ImportValue: !Sub ${TemplateName}-PUB2-SN
+      SecurityGroups:
+        - Fn::ImportValue: !Sub ${TemplateName}-SECURITY-GROUP
 
   TargetGroupforUdagram:
     Type: AWS::ElasticLoadBalancingV2::TargetGroup
