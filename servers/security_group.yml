@@ -10,11 +10,11 @@ Parameters:
 
 
 Resources:
-  SecurityGroup:
+  SecurityGroupForLB:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: security group for instances in !Sub ${TemplateName}-VPCID
-      GroupName: !Sub ${TemplateName}-security-group
+      GroupDescription: security group for Load Balancer
+      GroupName: !Sub ${TemplateName}-security-group-LB
       VpcId:
         Fn::ImportValue:
           !Sub ${TemplateName}-VPCID
@@ -23,7 +23,34 @@ Resources:
           FromPort: 80
           ToPort: 80
           IpProtocol: tcp
-          Description: receive traffic from load balancer in the same VPC
+          Description: receive traffic via Internet
+      SecurityGroupEgress:
+        - CidrIp:
+            Fn::ImportValue:
+              Fn::GetAtt:
+                !Sub "${TemplateName}-VPCID".CidrBlock
+          FromPort: 80
+          ToPort: 80
+          IpProtocol: tcp
+          Description: transfer traffic from outside to subnets in VPC
+
+  SecurityGroupForTargets:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: !Sub security group for target instances in ${TemplateName}-VPCID
+      GroupName: !Sub ${TemplateName}-security-group-targets
+      VpcId:
+        Fn::ImportValue:
+          !Sub ${TemplateName}-VPCID
+      SecurityGroupIngress:
+        - CidrIp:
+            Fn::ImportValue:
+              Fn::GetAtt:
+                !Sub "${TemplateName}-VPCID".CidrBlock
+          FromPort: 80
+          ToPort: 80
+          IpProtocol: tcp
+          Description: receive traffic from the same VPC
       SecurityGroupEgress:
         - CidrIp: 0.0.0.0/0
           FromPort: 0
@@ -33,8 +60,14 @@ Resources:
 
 
 Outputs:
-  SecurityGroup:
-    Description: Security group for instances
-    Value: !Ref SecurityGroup
+  SecurityGroupForLB:
+    Description: Security group for Load Balancer
+    Value: !Ref SecurityGroupForLB
     Export:
-      Name: !Sub ${TemplateName}-SECURITY-GROUP
+      Name: !Sub ${TemplateName}-SECURITY-GROUP-LB
+
+  SecurityGroupForTargets:
+    Description: Security group for target instances
+    Value: !Ref SecurityGroupForTargets
+    Export:
+      Name: !Sub ${TemplateName}-SECURITY-GROUP-TARGETS
