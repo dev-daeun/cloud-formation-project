@@ -224,6 +224,12 @@ Outputs:
     Export:
       Name: !Sub ${TemplateName}-VPCID
 
+  VpcCIDR:
+    Description: CIDR block of VPC
+    Value: !GetAtt VPC.CidrBlock
+    Export:
+      Name: !Sub ${TemplateName}-VPC-CIDR
+
   PublicSubnet1:
     Description: A reference to the public subnet in the 1st Availability Zone
     Value: !Ref PublicSubnet1
