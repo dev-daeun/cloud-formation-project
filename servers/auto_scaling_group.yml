@@ -69,3 +69,6 @@ Resources:
             !Sub ${TemplateName}-PRI2-SN
       MinSize: !Ref MinAutoScale
       MaxSize: !Ref MaxAutoScale
+      TargetGroupARNs:
+        - Fn::ImportValue: !Sub ${TemplateName}-TARGET-GRP
+

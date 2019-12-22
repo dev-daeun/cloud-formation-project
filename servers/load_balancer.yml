@@ -72,3 +72,9 @@ Outputs:
       Fn::Join: [ "", [ "http://", !GetAtt "LBforUdagram.DNSName" ] ]
     Export:
       Name: !Sub ${TemplateName}-LB
+
+  TargetGroupforUdagram:
+    Description: Target group to receive traffic
+    Value: !Ref TargetGroupforUdagram
+    Export:
+      Name: !Sub ${TemplateName}-TARGET-GRP
