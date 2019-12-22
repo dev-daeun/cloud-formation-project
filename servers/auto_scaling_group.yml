@@ -39,9 +39,9 @@ Resources:
       BlockDeviceMappings:
         - DeviceName: /dev/sda1
           Ebs:
-            VolumeSize: !Ref EbsVolumeSize
+            VolumeSize: 16
       ImageId: ami-06d51e91cea0dac8d
-      InstanceType: !Ref InstanceTypeAutoScale
+      InstanceType: t2.medium
       IamInstanceProfile: !Ref ProfileWithRolesForOurApp
       UserData:
         Fn::Base64: !Sub |
@@ -67,8 +67,8 @@ Resources:
             !Sub ${TemplateName}-PRI1-SN
         - Fn::ImportValue:
             !Sub ${TemplateName}-PRI2-SN
-      MinSize: !Ref MinAutoScale
-      MaxSize: !Ref MaxAutoScale
+      MinSize: 4
+      MaxSize: 8
       TargetGroupARNs:
         - Fn::ImportValue: !Sub ${TemplateName}-TARGET-GRP
 

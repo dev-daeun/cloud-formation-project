@@ -2,21 +2,5 @@
   {
     "ParameterKey": "TemplateName",
     "ParameterValue": "udacity-project-2"
-  },
-  {
-    "ParameterKey": "MinAutoScale",
-    "ParameterValue": "4"
-  },
-  {
-    "ParameterKey": "MaxAutoScale",
-    "ParameterValue": "8"
-  },
-  {
-    "ParameterKey": "EbsVolumeSize",
-    "ParameterValue": "16"
-  },
-  {
-    "ParameterKey":  "InstanceTypeAutoScale",
-    "ParameterValue": "t2.medium"
   }
 ]
