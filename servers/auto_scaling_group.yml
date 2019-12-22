@@ -55,7 +55,7 @@ Resources:
           unzip -o udacity.zip
       SecurityGroups:
         - Fn::ImportValue:
-            !Sub ${TemplateName}-SECURITY-GROUP
+            !Sub ${TemplateName}-SECURITY-GROUP-TARGETS
 
   AutoScalingGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
