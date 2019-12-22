@@ -8,11 +8,6 @@ Parameters:
     Description: A stack's name to distinguish resources created by CloudFormation.
     Type: String
 
-  VpcCIDR:
-    Description: IP range (CIDR notation) for VPC
-    Type: String
-    Default: 10.0.0.0/16
-
 
 Resources:
   SecurityGroup:
