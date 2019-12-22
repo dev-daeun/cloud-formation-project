@@ -28,6 +28,8 @@ Resources:
       HealthyThresholdCount: 2
       Port: 80
       Protocol: HTTP
+      Matcher:
+        HttpCode: 200
       # if load balancer requests 5 times to target and it returns Internal Server Error or does not respond,
       # it is considered unhealthy.
       UnhealthyThresholdCount: 5
