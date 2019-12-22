@@ -8,22 +8,6 @@ Parameters:
     Description: A stack's name to distinguish resources created by CloudFormation.
     Type: String
 
-  MinAutoScale:
-    Description: Minimum amount of EC2 instances to auto-scale
-    Type: String
-
-  MaxAutoScale:
-    Description: Maximum amount of EC2 instances to auto-scale
-    Type: String
-
-  InstanceTypeAutoScale:
-    Description: Type of AMI
-    Type: String
-
-  EbsVolumeSize:
-    Description: Size of EBS disk
-    Type: String
-
 
 Resources:
   ProfileWithRolesForOurApp:
