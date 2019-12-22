@@ -26,9 +26,7 @@ Resources:
           Description: receive traffic via Internet
       SecurityGroupEgress:
         - CidrIp:
-            Fn::ImportValue:
-              Fn::GetAtt:
-                !Sub "${TemplateName}-VPCID".CidrBlock
+            Fn::ImportValue: !Sub ${TemplateName}-VPC-CIDR
           FromPort: 80
           ToPort: 80
           IpProtocol: tcp
@@ -44,9 +42,7 @@ Resources:
           !Sub ${TemplateName}-VPCID
       SecurityGroupIngress:
         - CidrIp:
-            Fn::ImportValue:
-              Fn::GetAtt:
-                !Sub "${TemplateName}-VPCID".CidrBlock
+            Fn::ImportValue: !Sub ${TemplateName}-VPC-CIDR
           FromPort: 80
           ToPort: 80
           IpProtocol: tcp
