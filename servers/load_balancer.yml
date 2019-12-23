@@ -1,6 +1,6 @@
 Description:
   Written by DaEun Kim.
-  This template deploys load balancer which distribute traffic to instances in public subnets.
+  This template deploys load balancer which distributes traffic to instances in private subnets via NAT in public subnets.
 
 
 Parameters:
